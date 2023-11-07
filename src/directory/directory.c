@@ -1,10 +1,13 @@
 #include "api/directory/directory.h"
 #include "api/string/safe.h"
+
 #ifdef _WIN32
 #include "api/directory/path.h"
+#define STAT_FUNC _stat
 #else
 #include <stdlib.h>
 #include <string.h>
+#define STAT_FUNC stat
 #endif
 #ifdef _WIN32
 BOOL parseChildForWin32(API_DIR_CHILD* child, const WIN32_FIND_DATA* ffd)
@@ -56,8 +59,6 @@ BOOL readDir(API_DIR* dir, API_DIR_CHILD* next)
         API_CHAR path[API_MAX_PATH];
         memset(path, API_MAX_PATH, sizeof(API_CHAR));
         joinPath(path, API_MAX_PATH, dir->path, "\\*");
-        // stringCopy(path, API_MAX_PATH, dir->path);
-        // stringCat(path, API_MAX_PATH, "\\*");
 
         dir->ffd = (WIN32_FIND_DATA*)malloc(sizeof(WIN32_FIND_DATA));
         if(dir->ffd == NULL)
@@ -83,6 +84,9 @@ BOOL readDir(API_DIR* dir, API_DIR_CHILD* next)
         return FALSE;
     parseChildForLinux(next, child);
 #endif
+    API_CHAR fullPath[API_MAX_PATH];
+    joinPath(fullPath, API_MAX_PATH, dir->path, next->d_name);
+    STAT_FUNC(fullPath, &(next->stat));
     return TRUE;
 }
 

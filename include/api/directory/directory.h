@@ -2,6 +2,7 @@
 #define _DIRECTORY_DIRECTORY_H_
 
 #include "api/basetype.h"
+#include <sys/stat.h>
 #ifdef _WIN32
 #else
 #include <dirent.h>
@@ -10,6 +11,7 @@
 typedef struct
 {
     char d_name[API_MAX_PATH + 1];
+    struct stat stat;
 } API_DIR_CHILD;
 
 typedef struct 
