@@ -1,0 +1,27 @@
+#ifndef _DIRECTORY_PATH_H_
+#define _DIRECTORY_PATH_H_
+
+#include "api/basetype.h"
+
+#define WIN32_DIR_SEP '\\'
+#define UNIX_DIR_SEP '/'
+
+#ifdef _WIN32
+#define NATIVE_DIR_SEP WIN32_DIR_SEP
+#define NON_NATIVE_DIR_SEP UNIX_DIR_SEP
+#else
+#define NATIVE_DIR_SEP UNIX_DIR_SEP
+#define NON_NATIVE_DIR_SEP WIN32_DIR_SEP
+#endif
+
+#define PATH_E_INSUFFICIENT_BUFFER           ((API_RESULT)0x8007007AL)  // 0x7A = 122L = ERROR_INSUFFICIENT_BUFFER
+#define PATH_E_INVALID_PARAMETER             ((API_RESULT)0x80070057L)  // 0x57 =  87L = ERROR_INVALID_PARAMETER
+#define PATH_E_END_OF_FILE                   ((API_RESULT)0x80070026L)  // 0x26 =  38L = ERROR_HANDLE_EOF
+
+START_EXTERN
+
+EXTENDAPI API_RESULT joinPath(API_CHAR* out, const size_t MAX, const API_CHAR* head, const API_CHAR* tail);
+
+END_EXTERN
+
+#endif //!_DIRECTORY_PATH_H_
