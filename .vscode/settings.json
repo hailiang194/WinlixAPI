@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "basetype.h": "c",
-        "safe.h": "c"
+        "safe.h": "c",
+        "process.h": "c"
     }
 }

@@ -3,12 +3,14 @@ set(API_LIB_PUBLIC_HEADERS
     "${PROJECT_SOURCE_DIR}/include/api/string/safe.h"
     "${PROJECT_SOURCE_DIR}/include/api/directory/directory.h"
     "${PROJECT_SOURCE_DIR}/include/api/directory/path.h"
+    "${PROJECT_SOURCE_DIR}/include/api/process/process.h"    
 )
 
 set(API_LIB_SOURCES
     "string/safe.c"
     "directory/directory.c"
     "directory/path.c"
+    "process/process.c"
 )
 
 add_library(ExtendedAPI ${API_LIB_SOURCES} ${API_LIB_PUBLIC_HEADERS})

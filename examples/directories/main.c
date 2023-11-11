@@ -24,7 +24,6 @@ int main(int argc, API_CHAR** argv)
     {
         API_CHAR fullPath[API_MAX_PATH];
         joinPath(fullPath, API_MAX_PATH, dir->path, child.d_name);
-        API_PRINTF(TEXT("\n\t%s"), fullPath);
     }
     API_PRINTF(TEXT("\n"));
     closeDir(dir);
