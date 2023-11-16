@@ -2,6 +2,7 @@
     "files.associations": {
         "basetype.h": "c",
         "safe.h": "c",
-        "process.h": "c"
+        "process.h": "c",
+        "directory.h": "c"
     }
 }

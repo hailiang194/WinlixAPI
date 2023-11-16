@@ -21,6 +21,8 @@
 START_EXTERN
 
 EXTENDAPI API_RESULT joinPath(API_CHAR* out, const size_t MAX, const API_CHAR* head, const API_CHAR* tail);
+EXTENDAPI BOOL isExist(const API_CHAR* path);
+EXTENDAPI API_RESULT getLeafOfPath(API_CHAR* out, const size_t MAX, const API_CHAR* path);
 
 END_EXTERN
 

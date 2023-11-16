@@ -5,6 +5,7 @@
 #ifdef _WIN32
 #include <tlhelp32.h>
 #else
+#include "api/directory/directory.h"
 #endif
 
 typedef struct
@@ -14,6 +15,8 @@ typedef struct
     PROCESSENTRY32 pe;
     size_t size;
 #else
+    API_DIR* procDir;
+    API_DIR_CHILD childDir;
 #endif
 } ProcessSnapshot;
 
