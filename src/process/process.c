@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include "api/string/validate.h"
 #include "api/directory/path.h"
+#include <signal.h>
 #endif
 
 ProcessSnapshot* takeProcessSnapshot(void)
@@ -170,6 +171,7 @@ BOOL suspendProcess(const unsigned long pid)
 
     CloseHandle(hThreadSnapshot);
 #else
+    kill(pid, SIGSTOP);
 #endif
     return TRUE;
 }
@@ -199,6 +201,7 @@ BOOL resumeProcess(const unsigned long pid)
 
     CloseHandle(hThreadSnapshot);
 #else
+    kill(pid, SIGCONT);
 #endif
     return TRUE;
 }
@@ -228,6 +231,7 @@ BOOL terminateProcess(const unsigned long pid)
 
     CloseHandle(hThreadSnapshot);
 #else
+    kill(pid, SIGINT);
 #endif
     return TRUE;
 }
