@@ -85,3 +85,25 @@ API_RESULT stringCat(API_CHAR* destionation, const size_t MAX, const API_CHAR* c
 
     return result;
 }
+
+int stringCompare(const API_CHAR* str1, const API_CHAR* str2, const size_t MAX)
+{
+    const API_CHAR* c1 = str1;
+    const API_CHAR* c2 = str2;
+
+    while(((*c1) != '\0') || ((*c2) != '\0'))
+    {
+        if((size_t)(c1 - str1) > MAX)
+            break;
+        
+        if((*c1) == (*c2))
+        {
+            ++c1;
+            ++c2;
+            continue;
+        }
+
+        return (int)((*c1) - (*c2));
+    }
+    return 0;
+}

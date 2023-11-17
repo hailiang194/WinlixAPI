@@ -16,6 +16,7 @@ START_EXTERN
 EXTENDAPI API_RESULT stringCheckLength(const API_CHAR* str, const size_t MAX, size_t* length);
 EXTENDAPI API_RESULT stringCopy(API_CHAR* destionation, const size_t MAX, const API_CHAR* source);
 EXTENDAPI API_RESULT stringCat(API_CHAR* destionation, const size_t MAX, const API_CHAR* cat);
+EXTENDAPI int stringCompare(const API_CHAR* str1, const API_CHAR* str2, const size_t MAX);
 
 END_EXTERN
 

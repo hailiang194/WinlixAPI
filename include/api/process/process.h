@@ -34,6 +34,14 @@ EXTENDAPI ProcessSnapshot* takeProcessSnapshot(void);
 EXTENDAPI BOOL readProcessSnapshot(ProcessSnapshot* snapshoot, ProcessAPI* process);
 EXTENDAPI API_RESULT closeProcessSnapshot(ProcessSnapshot *snapshot);
 
+/*
+ * WARNING: Those needs administrator privileges
+ */
+
+EXTENDAPI BOOL suspendProcess(const unsigned long pid);
+EXTENDAPI BOOL resumeProcess(const unsigned long pid);
+EXTENDAPI BOOL terminateProcess(const unsigned long pid);
+
 END_EXTERN
 
 #endif //!_PROCESS_PROCESS_H_

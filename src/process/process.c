@@ -143,3 +143,91 @@ API_RESULT closeProcessSnapshot(ProcessSnapshot *snapshot)
     free(snapshot);
     return S_OK;
 }
+
+BOOL suspendProcess(const unsigned long pid)
+{
+#ifdef _WIN32
+    //ref: https://stackoverflow.com/questions/11010165/how-to-suspend-resume-a-process-in-windows
+    HANDLE hThreadSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
+
+    THREADENTRY32 threadEntry; 
+    threadEntry.dwSize = sizeof(THREADENTRY32);
+
+    Thread32First(hThreadSnapshot, &threadEntry);
+
+    do
+    {
+        if (threadEntry.th32OwnerProcessID == pid)
+        {
+            HANDLE hThread = OpenThread(THREAD_ALL_ACCESS, FALSE,
+                threadEntry.th32ThreadID);
+            
+            SuspendThread(hThread);
+            
+            CloseHandle(hThread);
+        }
+    } while (Thread32Next(hThreadSnapshot, &threadEntry));
+
+    CloseHandle(hThreadSnapshot);
+#else
+#endif
+    return TRUE;
+}
+
+BOOL resumeProcess(const unsigned long pid)
+{
+#ifdef _WIN32
+    //ref: https://stackoverflow.com/questions/11010165/how-to-suspend-resume-a-process-in-windows
+    HANDLE hThreadSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
+
+    THREADENTRY32 threadEntry; 
+    threadEntry.dwSize = sizeof(THREADENTRY32);
+
+    Thread32First(hThreadSnapshot, &threadEntry);
+
+    do
+    {
+        if (threadEntry.th32OwnerProcessID == pid)
+        {
+            HANDLE hThread = OpenThread(THREAD_ALL_ACCESS, FALSE,
+                threadEntry.th32ThreadID);
+            
+            ResumeThread(hThread);
+            CloseHandle(hThread);
+        }
+    } while (Thread32Next(hThreadSnapshot, &threadEntry));
+
+    CloseHandle(hThreadSnapshot);
+#else
+#endif
+    return TRUE;
+}
+
+BOOL terminateProcess(const unsigned long pid)
+{
+#ifdef _WIN32
+    //ref: https://stackoverflow.com/questions/11010165/how-to-suspend-resume-a-process-in-windows
+    HANDLE hThreadSnapshot = CreateToolhelp32Snapshot(TH32CS_SNAPTHREAD, 0);
+
+    THREADENTRY32 threadEntry; 
+    threadEntry.dwSize = sizeof(THREADENTRY32);
+
+    Thread32First(hThreadSnapshot, &threadEntry);
+
+    do
+    {
+        if (threadEntry.th32OwnerProcessID == pid)
+        {
+            HANDLE hThread = OpenThread(THREAD_ALL_ACCESS, FALSE,
+                threadEntry.th32ThreadID);
+            
+            TerminateThread(hThread, EXIT_SUCCESS);
+            CloseHandle(hThread);
+        }
+    } while (Thread32Next(hThreadSnapshot, &threadEntry));
+
+    CloseHandle(hThreadSnapshot);
+#else
+#endif
+    return TRUE;
+}
