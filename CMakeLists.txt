@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 2.8)
 cmake_policy(VERSION 2.8.12)
 
 set(LIB_MAJOR_VERSION "1")
