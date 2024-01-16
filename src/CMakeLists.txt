@@ -4,7 +4,8 @@ set(API_LIB_PUBLIC_HEADERS
     "${PROJECT_SOURCE_DIR}/include/api/string/validate.h"
     "${PROJECT_SOURCE_DIR}/include/api/directory/directory.h"
     "${PROJECT_SOURCE_DIR}/include/api/directory/path.h"
-    "${PROJECT_SOURCE_DIR}/include/api/process/process.h"    
+    "${PROJECT_SOURCE_DIR}/include/api/process/process.h"   
+    "${PROJECT_SOURCE_DIR}/include/api/network/interface.h" 
 )
 
 set(API_LIB_SOURCES
@@ -13,6 +14,7 @@ set(API_LIB_SOURCES
     "directory/directory.c"
     "directory/path.c"
     "process/process.c"
+    "network/interface.c"
 )
 
 add_library(ExtendedAPI ${API_LIB_SOURCES} ${API_LIB_PUBLIC_HEADERS})

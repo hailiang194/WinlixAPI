@@ -15,3 +15,7 @@ target_link_libraries(ProcessesSignalExample PUBLIC ExtendedAPI)
 if(WIN32)
     set_target_properties(ProcessesSignalExample PROPERTIES LINK_FLAGS "/MANIFESTUAC:\"level='requireAdministrator' uiAccess='false'\" /SUBSYSTEM:CONSOLE")
 endif()
+
+add_executable(NetworkInterfaceExample network/interface.c)
+target_include_directories(NetworkInterfaceExample PUBLIC ${CMAKE_SOURCE_DIR}/include)
+target_link_libraries(NetworkInterfaceExample PUBLIC ExtendedAPI)
