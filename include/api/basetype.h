@@ -1,6 +1,8 @@
 #ifndef BASE_TYPE_H
 #define BASE_TYPE_H
 
+#include <assert.h>
+
 #ifdef _WIN32
 #include <windows.h>
 #include <tchar.h>

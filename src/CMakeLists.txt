@@ -7,6 +7,7 @@ set(API_LIB_PUBLIC_HEADERS
     "${PROJECT_SOURCE_DIR}/include/api/process/process.h"   
     "${PROJECT_SOURCE_DIR}/include/api/network/interface.h" 
     "${PROJECT_SOURCE_DIR}/include/api/ipc/shared-memory.h"
+    "${PROJECT_SOURCE_DIR}/include/api/ipc/message-queue.h"
 )
 
 set(API_LIB_SOURCES
@@ -17,6 +18,7 @@ set(API_LIB_SOURCES
     "process/process.c"
     "network/interface.c"
     "ipc/shared-memory.c"
+    "ipc/message-queue.c"
 )
 
 add_library(ExtendedAPI ${API_LIB_SOURCES} ${API_LIB_PUBLIC_HEADERS})
