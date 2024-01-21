@@ -33,3 +33,7 @@ target_link_libraries(IpcSharedMemoryReadExample PUBLIC ExtendedAPI)
 if(WIN32)
     set_target_properties(IpcSharedMemoryReadExample PROPERTIES LINK_FLAGS "/MANIFESTUAC:\"level='requireAdministrator' uiAccess='false'\" /SUBSYSTEM:CONSOLE")
 endif()
+
+add_executable(IpcMessageQueueExample ipc/message-queue/main.c)
+target_include_directories(IpcMessageQueueExample PUBLIC ${CMAKE_SOURCE_DIR}/include)
+target_link_libraries(IpcMessageQueueExample PUBLIC ExtendedAPI)
